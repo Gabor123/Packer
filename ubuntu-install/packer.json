@@ -39,5 +39,27 @@
       "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
       "initrd=/install/initrd.gz -- <enter>"
     ]
-  }]
+  }],
+  "provisioners": [
+    {
+      "type": "shell",
+      "environment_vars": [
+        "FOO=foo",
+        "BAR=bar"
+      ],
+      "inline": [
+        "echo \"FOO is $FOO\"",
+        "echo \"BAR is $BAR\""
+      ]
+    }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "vagrant",
+        "keep_input_artifact": true,
+        "provider_override": "virtualbox"
+      }
+    ]
+  ]
 }
